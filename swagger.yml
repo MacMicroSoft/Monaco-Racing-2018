@@ -1,0 +1,59 @@
+info:
+  title: My API
+  version: 1.0
+  description: A simple API
+
+paths:
+  /api/v1/report/:
+    get:
+      summary: Get data on Monaco Racing in different formats.
+      parameters:
+        - name: format
+          in: query
+          type: string
+          enum: ["json", "xml"]
+          description: The format in which to return the data.
+      responses:
+        '200':
+          description: Racing data in the specified format (JSON or XML).
+        '400':
+
+  /api/v1/drivers/:
+    get:
+      summary: Get a list of drivers.
+      parameters:
+        - name: format
+          in: query
+          type: string
+          enum: ["json", "xml"]
+          description: The format in which to return the data.
+        - name: order
+          in: query
+          type: string
+          enum: ["asc", "desc"]
+          description: The order in which to sort the data.
+      responses:
+        '200':
+          description: A list of drivers in the specified format (JSON or XML).
+        '400':
+          description: Invalid data format
+
+
+  /api/v1/drivers/{driver_id}/:
+    get:
+      summary: Get personal information about a specific driver.
+      parameters:
+        - name: driver_id
+          in: path
+          required: true
+          description: The unique identifier of the driver.
+        - name: format
+          in: query
+          type: string
+          enum: ["json", "xml"]
+          description: The format in which to return the data.
+      responses:
+        '200':
+          description: Personal information about the driver in the specified format (JSON or XML).
+        '400':
+          description: Invalid data format
